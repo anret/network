@@ -1,0 +1,54 @@
+---
+
+- name: Interfaces konfigurieren
+  hosts: router
+
+  vars_files:
+  - vars/static_routes.yaml
+  - vars/basic_vars.yaml
+  - vars/interface_params.yaml
+
+  tasks:
+
+  - name: machen backup vom running konfig 
+    ios_config:
+      backup: yes
+      backup_options:
+        dir_path: "{{ pfad_cfg }}/{{ ansible_net_hostname }}"
+
+  - name: folgende statische routen werden angelegt
+    debug:
+      msg: "{{ item }}"
+    loop: "{{ routes[ansible_facts['net_hostname']] }}"
+
+  - name: statische routen
+    ios_static_route:
+      aggregate: "{{ routes[ansible_facts['net_hostname']] }}"
+
+  - name: liste mit interfaces (aus vars) bei allen routern
+    debug:
+      msg: "{{ item[1].ip }}"
+      # wird angezeigt nur ab -v
+      # verbosity: 1
+    loop: "{{ configurations.values() | list | subelements('ip_interfaces') }}"
+    loop_control:
+      label: "{{ item[1].ip }}"
+    run_once: true
+
+  - name: konnektivitaet testen
+    net_ping:
+      dest: "{{ item[1].ip }}"
+      count: 10
+    loop: "{{ configurations.values() | list | subelements('ip_interfaces') }}"
+    loop_control:
+      label: "{{ item[1].ip }}"
+    register: ping_status
+
+  - name: info ueber pings
+    debug:
+      msg: "Packet loss ist: {{ item.packet_loss }}"
+    loop: "{{ ping_status.results }}"
+    loop_control:
+      label: "{{ item.commands }}"
+
+...

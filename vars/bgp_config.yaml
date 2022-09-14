@@ -1,0 +1,30 @@
+---
+bgp_config:
+  CSR-1:
+    as: '1'
+    router_id: '10.0.100.150'
+    neighbors:
+    - {neighbor: '10.0.100.151', remote_as: '2'}
+    - {neighbor: '10.0.100.152', remote_as: '3'}
+    networks:
+    - {prefix: '10.0.150.0', masklen: '24'}
+    - {prefix: '10.100.150.1', masklen: '32'}
+  CSR-2:
+    as: '2'
+    router_id: '10.0.100.151'
+    neighbors:
+    - {neighbor: '10.0.100.150', remote_as: '1'}
+    - {neighbor: '10.0.100.152', remote_as: '3'}
+    networks:
+    - {prefix: '10.0.151.0', masklen: '24'}
+    - {prefix: '10.100.152.1', masklen: '32'}
+  CSR-3:
+    as: '3'
+    router_id: '10.0.100.152'
+    neighbors:
+    - {neighbor: '10.0.100.150', remote_as: '1'}
+    - {neighbor: '10.0.100.151', remote_as: '2'}
+    networks:
+    - {prefix: '10.0.152.0', masklen: '24'}
+    - {prefix: '10.100.152.1', masklen: '32'}
+...

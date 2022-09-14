@@ -1,0 +1,24 @@
+---
+
+- name: Interfaces konfigurieren
+  hosts: router
+
+  vars_files:
+  - vars/static_routes.yaml
+  - vars/basic_vars.yaml
+  - vars/interface_params.yaml
+
+  tasks:
+  - name: include role "cfg_backup"
+    include_role:
+      name: cfg_backup
+      
+  - name: include role "static_routes"
+    include_role:
+      name: static_routes
+      
+  - name: include role "connectivity_test"
+    include_role:
+      name: connectivity_test
+
+...

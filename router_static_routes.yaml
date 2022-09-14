@@ -1,0 +1,41 @@
+---
+
+- name: Interfaces konfigurieren
+  hosts: router
+  serial: 1
+
+  vars_files:
+  -  vars/interface_params.yaml
+  -  vars/basic_vars.yaml
+
+  vars:
+    short_dict: "{% set t=configurations.pop(ansible_net_hostname) %}{{ configurations }}"
+
+  tasks:
+  - name: short_dict
+    debug:
+      var: short_dict
+    tags: testrun
+
+  - name: configurable backup path 
+    ios_config:
+      backup: yes
+      backup_options:
+        dir_path: "{{ pfad_cfg }}/{{ ansible_net_hostname }}"
+
+  - name: statische routen
+    ios_static_route:
+      prefix: "{% set net = item[1].ip + item[1].cidr %}{{ net | ipv4('network') }}"
+      mask: "{{ item[1].sm }}"
+      next_hop: |-
+        {{ hostvars.values()|list|json_query("[?ansible_facts.net_hostname=='"+item[0].key+"']
+        .ansible_facts.net_interfaces")|json_query('[].GigabitEthernet1.ipv4[0].address')|join }}
+    loop: "{{ router_liste | subelements('value.ip_interfaces')}}"
+    loop_control:
+      label: | 
+        "Router: {{ item[0].key }} Interface: {{ item[1].interface }} 
+        IP: {{ item[1].ip }} MASK: {{ item[1].sm }}"
+    vars:
+      router_liste: "{{ short_dict | dict2items }}"
+
+...

@@ -1,0 +1,16 @@
+routes:
+  CSR-1:
+    - {prefix: '10.0.151.0' , mask: '255.255.255.0' , next_hop: '10.0.100.151', admin_distance: '201'}
+    - {prefix: '10.100.151.1', mask: '255.255.255.255' , next_hop: '10.0.100.151', admin_distance: '201'}    
+    - {prefix: '10.0.152.0', mask: '255.255.255.0', next_hop: '10.0.100.152', admin_distance: '201'}
+    - {prefix: '10.100.152.1', mask: '255.255.255.255', next_hop: '10.0.100.152', admin_distance: '201'} 
+  CSR-2:
+    - {prefix: '10.0.150.0' , mask: '255.255.255.0' , next_hop: '10.0.100.150', admin_distance: '201'}
+    - {prefix: '10.100.150.1', mask: '255.255.255.255' , next_hop: '10.0.100.150', admin_distance: '201'}    
+    - {prefix: '10.0.152.0', mask: '255.255.255.0', next_hop: '10.0.100.152', admin_distance: '201'}
+    - {prefix: '10.100.152.1', mask: '255.255.255.255', next_hop: '10.0.100.152', admin_distance: '201'} 
+  CSR-3:
+    - {prefix: '10.0.151.0' , mask: '255.255.255.0' , next_hop: '10.0.100.151', admin_distance: '201'}
+    - {prefix: '10.100.151.1', mask: '255.255.255.255' , next_hop: '10.0.100.151', admin_distance: '201'}    
+    - {prefix: '10.0.150.0', mask: '255.255.255.0', next_hop: '10.0.100.150', admin_distance: '201'}
+    - {prefix: '10.100.150.1', mask: '255.255.255.255', next_hop: '10.0.100.150', admin_distance: '201'} 

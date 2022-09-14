@@ -1,0 +1,11 @@
+{% for item in configurations[ansible_net_hostname].ip_interfaces %} 
+interface {{ item.interface }} 
+ description {{ item.description }} 
+ ip address {{ item.ip }} {{ item.cidr }} 
+{% if item.mbps_in != "" and item.mbps_out != "" %}
+ service-policy input {{ item.mbps_in }}Mb 
+ service-policy output {{ item.mbps_out }}Mb 
+{% endif %} 
+ no shutdown 
+ exit
+{% endfor %}

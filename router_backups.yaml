@@ -1,0 +1,21 @@
+---
+
+- name: Backups
+  hosts: router
+
+  vars:
+    pfad_cfg: /home/ansible/configs
+
+  tasks:
+
+  # zwischen-Ordner werden automatisch angelegt
+  # Dateinamen werden automatisch Hostname und Zeitstempel beinhalten
+  # ansible_net_hostname ist ein Ansible Fact
+
+  - name: Running Konfig speichern
+    ios_config:
+      backup: true
+      backup_options:
+        dir_path: "{{ pfad_cfg }}/{{ ansible_net_hostname }}"
+
+...

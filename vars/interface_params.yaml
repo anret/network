@@ -1,0 +1,53 @@
+---
+configurations:
+  CSR-1:
+    ip_interfaces:
+    - interface: GigabitEthernet2
+      description: Gig 2 mit Ansible konfiguriert
+      ip: "10.0.150.1"
+      sm: "255.255.255.0"
+      cidr: "/24"
+      mbps_in: ""
+      mbps_out: ""
+    - interface: Loopback0
+      description: Lo0 mit Ansible konfiguriert
+      ip: "10.100.150.1"
+      sm: "255.255.255.255"
+      cidr: "/32"
+      mbps_in: "10"
+      mbps_out: "10"
+
+  CSR-2:
+    ip_interfaces:
+    - interface: GigabitEthernet2
+      description: Gig 2 mit Ansible konfiguriert
+      ip: "10.0.151.1"
+      sm: "255.255.255.0"
+      cidr: "/24"
+      mbps_in: ""
+      mbps_out: ""
+    - interface: Loopback0
+      description: Lo0 mit Ansible konfiguriert
+      ip: "10.100.151.1"
+      sm: "255.255.255.255"
+      cidr: "/32"
+      mbps_in: "10"
+      mbps_out: "10"
+
+  CSR-3:
+    ip_interfaces:
+    - interface: GigabitEthernet2
+      description: Gig 2 mit Ansible konfiguriert
+      ip: "10.0.152.1"
+      sm: "255.255.255.0"
+      cidr: "/24"
+      mbps_in: ""
+      mbps_out: ""
+    - interface: Loopback0
+      description: Lo0 mit Ansible konfiguriert
+      ip: "10.100.152.1"
+      sm: "255.255.255.255"
+      cidr: "/32"
+      mbps_in: "10"
+      mbps_out: "10"
+...
