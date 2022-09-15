@@ -1,0 +1,14 @@
+---
+
+  - name: BGP konfigurieren
+    vars:
+      bgp_conf: "{{ bgp_config[ansible_facts['net_hostname']] }}"
+    ios_bgp:
+      # default ist 'operation: merge'
+      operation: replace
+      config:
+        bgp_as: "{{ bgp_conf.as }}"
+        router_id: "{{ bgp_conf.router_id }}"
+        neighbors: "{{ bgp_conf.neighbors }}"
+        networks: "{{ bgp_conf.networks }}"
+...

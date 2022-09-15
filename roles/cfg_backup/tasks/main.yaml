@@ -1,0 +1,9 @@
+---
+
+  - name: machen backup vom running konfig 
+    ios_config:
+      backup: yes
+      backup_options:
+        dir_path: "{{ pfad_cfg }}/{{ ansible_net_hostname }}"
+
+...

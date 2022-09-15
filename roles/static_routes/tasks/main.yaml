@@ -1,0 +1,11 @@
+---
+  - name: folgende statische routen werden angelegt
+    debug:
+      msg: "{{ item }}"
+    loop: "{{ routes[ansible_facts['net_hostname']] }}"
+
+  - name: statische routen
+    ios_static_route:
+      aggregate: "{{ routes[ansible_facts['net_hostname']] }}"
+
+...
