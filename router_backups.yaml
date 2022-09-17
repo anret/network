@@ -4,7 +4,7 @@
   hosts: router
 
   vars:
-    pfad_cfg: /home/ansible/configs
+    pfad_cfg: /home/ansible/network/configs
 
   tasks:
 

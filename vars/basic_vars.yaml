@@ -1,5 +1,5 @@
 ---
-pfad_cfg: /home/ansible/configs
-pfad_j2: /home/ansible/templates
+pfad_cfg: /home/ansible/network/configs
+pfad_j2: /home/ansible/network/templates
 j2_template: ios_interfaces.j2
 ...
