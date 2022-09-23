@@ -17,7 +17,7 @@ bgp_config:
     - {neighbor: '10.0.100.152', remote_as: '3'}
     networks:
     - {prefix: '10.0.151.0', masklen: '24'}
-    - {prefix: '10.100.152.1', masklen: '32'}
+    - {prefix: '10.100.151.1', masklen: '32'}
   CSR-3:
     as: '3'
     router_id: '10.0.100.152'
