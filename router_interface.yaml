@@ -11,9 +11,10 @@
   - name: policy map anlegen
     ios_config:
       lines:
-      - class class-default
       - police rate 10000000 bps
-      parents: policy-map 10Mb
+      parents:
+      - policy-map 10Mb
+      - class class-default
       
   - name: configurable backup path 
     ios_config:
