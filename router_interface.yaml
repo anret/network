@@ -8,6 +8,13 @@
   - vars/basic_vars.yaml
 
   tasks:
+  - name: policy map anlegen
+    ios_config:
+      lines:
+      - class class-default
+      - police rate 10000000 bps
+      parents: policy-map 10Mb
+      
   - name: configurable backup path 
     ios_config:
       src: "{{ pfad_j2 }}/{{ j2_template }}"
